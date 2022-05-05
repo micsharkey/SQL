@@ -1,0 +1,20 @@
+CREATE TABLE sharkey_in_second (id INTEGER PRIMARY KEY, product TEXT, quantity INTEGER, price INTEGER, format TEXT, sales INTEGER); 
+
+INSERT INTO sharkey_in_second VALUES (1, "Science Poster", 250, 2.50, "physical", 130);
+INSERT INTO sharkey_in_second VALUES (2, "Monthly Calendar", 400, 12.00, "physical", 247); 
+INSERT INTO sharkey_in_second VALUES (3, "Voice Level Chart", 125, 6.00, "digital", 80);
+INSERT INTO sharkey_in_second VALUES (4, "Teacher Guide", 300, 18.00, "digital", 215); 
+INSERT INTO sharkey_in_second VALUES (5, "Gradebook Template", 500, 20.00, "digital", 368);
+INSERT INTO sharkey_in_second VALUES (6, "Student Growth Notes", 100, 5.00, "physical", 46); 
+INSERT INTO sharkey_in_second VALUES (7, "Student Teacher Planner", 250, 15.00, "physical", 87); 
+INSERT INTO sharkey_in_second VALUES (8, "Elementary Teacher Planner", 1000, 45.00, "physical", 718); 
+INSERT INTO sharkey_in_second VALUES (9, "Math Poster", 250, 2.50, "physical", 114);
+INSERT INTO sharkey_in_second VALUES (10, "English Poster", 250, 2.50, "physical", 198);
+INSERT INTO sharkey_in_second VALUES (11, "EFL Teaching Guide", 115, 40.00, "digital", 73); 
+INSERT INTO sharkey_in_second VALUES (12, "Tech in Teaching Guide", 350, 60.00, "physical", 205); 
+INSERT INTO sharkey_in_second VALUES (13, "Bulletin Board Letters", 500, 10.00, "physical", 338); 
+INSERT INTO sharkey_in_second VALUES (14, "Parent Teacher Conferences Pamphlet", 200, 7.50, "physical", 84); 
+INSERT INTO sharkey_in_second VALUES (15, "Meet the Teacher Template", 100, 3.00, "physical", 43); 
+
+SELECT * FROM sharkey_in_second WHERE price ORDER BY price;
+SELECT product, SUM(sales) FROM sharkey_in_second GROUP BY sales;
