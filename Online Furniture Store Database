@@ -1,0 +1,20 @@
+/*
+Sales from an online furniture store
+Collected by: https://www.khanacademy.org/profile/charlesb2000/
+*/
+
+SELECT SUM(transaction_date) AS transactions, country FROM sales GROUP BY country ORDER BY SUM(transaction_date) DESC;
+
+SELECT SUM(account_created) AS created_accounts, country, state FROM sales GROUP BY country, state HAVING created_accounts> 15;
+
+SELECT product, price AS item_price, SUM(transaction_date) AS total_sales, SUM(price) AS revenue FROM sales GROUP BY product ORDER BY transaction_date, product; 
+
+SELECT ROUND(AVG(account_created)) AS avg_accounts, country, 
+CASE 
+WHEN account_created > 10 THEN "high online engagement" 
+WHEN account_created > 5 THEN "average online engagement"
+ELSE "below target engagement" 
+END as "engagement" 
+FROM sales
+GROUP BY country
+ORDER BY AVG(account_created); 
