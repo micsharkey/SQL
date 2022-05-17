@@ -1,0 +1,56 @@
+CREATE TABLE acotar_characters 
+(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, occupation TEXT, mate_partner TEXT, mate_partnerID INTEGER); 
+
+INSERT INTO acotar_characters (name, occupation, mate_partner, mate_partnerID) VALUES 
+("Feyre", "High Lady of the Night Court", "Rhysand", 1),
+("Rhysand", "High Lord of the Night Court", "Feyre", 2),
+("Nesta", "Courtesan to the Human Realm", "Cassian", 3), 
+("Cassian", "General of the Night Court's Armies", "Nesta",4),
+("Azriel", "Spymaster", "NULL", NULL),
+("Amren", "Second-In-Command", "Varian", NULL), 
+("Morrigan", "Third-In-Command", "NULL", NULL),
+("Elain", "NULL", "Lucien", 8), 
+("Lucien", "Emissary", "Elain", 9), 
+("Tamlin", "High Lord of the Spring Court", "Amarantha", NULL); 
+
+CREATE TABLE character_death_probability 
+(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, likelihood TEXT, emotional_damage TEXT, annoyance_level INTEGER);
+
+INSERT INTO character_death_probability (name, likelihood, emotional_damage, annoyance_level) VALUES 
+("Feyre", "Low", "High", 1),
+("Rhysand", "Medium", "High", 1),
+("Nesta", "Medium", "High", 1),
+("Cassian", "High", "High", 1),
+("Azriel", "Low", "High", 2), 
+("Amren", "Medium", "Medium", 2),
+("Morrigan", "Low", "Low", 4),
+("Elain", "Low", "Medium", 3),
+("Lucien", "Medium", "Medium", 2), 
+("Tamlin", "Low", "Low", 5);
+
+CREATE TABLE annoyance_level (id INTEGER PRIMARY KEY, level TEXT);
+
+INSERT INTO annoyance_level VALUES 
+("1", "Love You So Much"),
+("2", "Still Like You a Lot"),
+("3", "Annoying Like a Sibling"),
+("4", "Definitely Talk Behind Your Back"), 
+("5", "Time to Go Pal");
+
+SELECT cdp.name, cdp.emotional_damage AS emotional_damage_if_killed, a.id AS annoyance_level, a.level AS reason
+FROM character_death_probability AS cdp 
+LEFT OUTER JOIN annoyance_level AS a
+ON cdp.annoyance_level=a.id
+ORDER BY cdp.annoyance_level; 
+
+SELECT ac.id AS id1, ac.name AS name1, acotar_characters.mate_partner
+FROM acotar_characters AS ac
+JOIN acotar_characters 
+ON acotar_characters.mate_partnerID=ac.id;
+
+
+SELECT ac.name, ac.occupation, cdp.likelihood AS likelihood_of_death
+FROM acotar_characters AS ac
+LEFT OUTER JOIN character_death_probability AS cdp 
+ON ac.id = cdp.id 
+ORDER BY cdp.likelihood; 
