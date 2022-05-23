@@ -1,0 +1,25 @@
+CREATE TABLE travel_data (id INTEGER PRIMARY KEY, username TEXT, user_location TEXT, recommended_locations TEXT, location_ratings INTEGER, user_comments TEXT); 
+
+INSERT INTO travel_data (username, user_location, recommended_locations, location_ratings, user_comments)  VALUES
+("micsharkey", "Quito, Ecuador", "Carolina Park", 4, "Excellent environment but difficult parking"),
+("jaanothony", "Cleveland, Ohio", "Luigi's Italian Restaurant", 5, "Great customer service and excellent food"),
+("thaitown314", "Bangkok, Thailand", "Great Swing", 3, "Really fun but really crowded"), 
+("rosarosa", "Cebu City, Philippines", "Sudlon National Park", 5, "Amazing views, beautiful trails, and friendly guides"), 
+("finndalitso5", "Lilongwe, Malawi", "Game Shopping Center", 3, "Has everything you need but crowded and not sure where to find everything"); 
+
+SELECT * FROM travel_data; 
+
+ALTER TABLE travel_data ADD safety_rating INTEGER default "unknown"; 
+
+SELECT * FROM travel_data;
+
+UPDATE travel_data SET safety_rating=5 WHERE id=1; 
+UPDATE travel_data SET safety_rating=3 WHERE id=2;
+UPDATE travel_data SET safety_rating=2 WHERE id=4;
+UPDATE travel_data SET safety_rating=3 WHERE id=5;
+
+SELECT * FROM travel_data;
+
+DELETE FROM travel_data WHERE id=3; 
+
+SELECT * FROM travel_data;
