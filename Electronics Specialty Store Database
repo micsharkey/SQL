@@ -1,0 +1,32 @@
+/*What was the average amount spent per account in February?*/
+SELECT SUM(quantity*price)/COUNT(cust.acctnum) 
+FROM FebSales AS Feb
+LEFT JOIN customers AS cust ON Feb.orderid=cust.orderid;
+
+/*How many of each type of headphone was sold in February?*/
+SELECT Product, COUNT(Product) 
+FROM FebSales
+WHERE Product LIKE '% Headphones%'
+GROUP BY Products;
+
+/*Which locations in New York received at least 3 orders in January, and how many orders did they each receive?*/
+SELECT DISTINCT location, COUNT(orderID) 
+FROM JanSales 
+WHERE location ='%NY%' 
+GROUP BY location 
+HAVING COUNT(orderID)>2;
+
+/*What was the average quantity of products purchased per account in February?*/
+select sum(quantity)/count(cust.acctnum)
+FROM FebSales Feb
+LEFT JOIN customers cust
+ON FEB.orderid=cust.order_id;
+
+/*Which product brought in the most revenue in January and how much revenue did it bring in total?*/
+SELECT product, 
+SUM(quantity*price)
+FROM JanSales 
+GROUP BY product
+ORDER BY SUM(quantity*price) desc 
+LIMIT 1;
+
